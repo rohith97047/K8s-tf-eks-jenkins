@@ -8,7 +8,12 @@ resource "aws_default_security_group" "jenkins-sg" {
     cidr_blocks = ["0.0.0.0/0"]
     ipv6_cidr_blocks = ["::/0"]
   }
-  
+  ingress {
+  from_port   = 22
+  to_port     = 22
+  protocol    = "tcp"
+  cidr_blocks = ["your_ip/32"]  # Replace with your actual IP
+}
   # Allow inbound TCP traffic on port 8080 (Jenkins) from any source.
   # This is the default port for Jenkins, so we open it to the Internet
   # because we will access it from a web browser
