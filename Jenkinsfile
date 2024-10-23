@@ -7,6 +7,14 @@ pipeline {
         AWS_DEFAULT_REGION = "ap-south-1"
     }
     stages {
+        stage("terrform destroy") {
+            steps {
+                script {
+                        sh "terraform destroy -auto-approve"
+                    }
+                }
+            }
+        }
         stage("Create an EKS Cluster") {
             steps {
                 script {
