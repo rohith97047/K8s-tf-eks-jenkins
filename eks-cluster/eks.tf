@@ -9,7 +9,8 @@ module "eks" {
     tags = {
         environment = "development"
         application = "myapp"
-    }    eks_managed_node_groups = {
+    }    
+    eks_managed_node_groups = {
         dev = {
             min_size = 1
             max_size = 3
