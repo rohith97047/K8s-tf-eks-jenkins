@@ -4,7 +4,7 @@ resource "aws_internet_gateway" "my-igw" {
   tags = {
     Name = "${var.env_prefix}-igw"
   }
-}# Default Route Table
+} # Default Route Table
 resource "aws_default_route_table" "my-route-table" {
   default_route_table_id = aws_vpc.my-vpc.default_route_table_id
   route {
