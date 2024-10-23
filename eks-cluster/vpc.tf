@@ -1,4 +1,5 @@
-data "aws_availability_zones" "azs" {}module "my-vpc" {
+data "aws_availability_zones" "azs" {}
+module "my-vpc" {
   source          = "terraform-aws-modules/vpc/aws"
   version         = "5.8.1"
   name            = "my-vpc"
