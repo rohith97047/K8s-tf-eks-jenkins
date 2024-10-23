@@ -7,18 +7,11 @@ pipeline {
         AWS_DEFAULT_REGION = "ap-south-1"
     }
     stages {
-        stage("terrform destroy") {
-            steps {
-                script {
-                        sh "terraform destroy -auto-approve"
-                    }
-                }
-            }
-        }
         stage("Create an EKS Cluster") {
             steps {
                 script {
                     dir('eks-cluster') {
+                        sh "terrform destroy --auto-approve"
                         sh "terraform init"
                         sh "terraform apply -auto-approve"
                     }
@@ -29,6 +22,7 @@ pipeline {
             steps {
                 script {
                     dir('Kubernetes') {
+                        sh "terrform destroy --auto-approve"
                         sh "aws eks update-kubeconfig --name eks-cluster --region ap-south-1"
                         sh "kubectl apply -f nginx-deployment.yaml -n default"
                         sh "kubectl apply -f nginx-service.yaml -n default"
